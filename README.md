@@ -2,7 +2,7 @@
 <img src="https://i.ibb.co/NY4FkHM/moviehome.png" alt="moviehome" border="0">
 
 ## Project Summary 
-* This app shows your favourite movies and actors from our library with 5000 movies, It has a [***Machine Learning Recommendation Engine***](https://github.com/mk870/Movie_Recommendation_Engine_Api) which recommends movies based on content type e.g genre, director and actors (its a content based recommendation engine).
+* This app shows your favourite movies and actors from a library with over 6000 movies, It has a [***Machine Learning Recommendation Engine***](https://github.com/mk870/Movie_Recommendation_Engine_Api) which recommends movies based on content type e.g genre, director and actors (its a content based recommendation engine).
 * The app also allows you to add and delete your favourite movies and actors in your own account via the [***MoviePlus spring boot server***](https://github.com/mk870/MoviePlusServer). 
 * Another feature is that it allows you to watch movie trailers and reviews through the youtube api.
 * Finally, it has a live [***Twitter Movie Sentiment***](https://github.com/mk870/Twitter_Sentiment_Analysis_Api) score for each movie, in addition you also get to see what people are saying about your movie through wordcloud.
