@@ -28,7 +28,7 @@
 
 
 ### **Movie Recommendations** 
-* The [***Machine Learning Recommendation Engine***](https://github.com/mk870/Movie_Recommendation_Engine_Api) is used to pull suggestions based on a movie typed by the client then served 8 recommended movies.
+* The [***Machine Learning Recommendation Engine***](https://github.com/mk870/Movie_Recommendation_Engine_Api) is used to pull suggestions based on a movie typed by the client then serve 8 recommended movies.
 * Axios is used as the package to fetch the data, utilizing the axios cancelToken property to stop network calls when necessary as the client types in the input field.
 * Once the movie names and ids are served, the app calls the TMDB api to get more movie data like the poster, overview etc.
 
