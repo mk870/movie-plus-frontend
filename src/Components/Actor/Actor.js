@@ -1,20 +1,19 @@
-import React from 'react'
-import ActorBio from './ActorBio'
-import ActorMovies from './ActorMovies'
-import { ActorStyles } from './Styles/ActorStyles'
+import React from "react";
+
+import ActorBio from "./ActorBio";
+import ActorMovies from "./ActorMovies";
+import { ActorStyles } from "./Styles/ActorStyles";
 
 const Actor = () => {
   return (
     <ActorStyles>
       <div className="cover">
-       <ActorBio/>
+        <ActorBio />
       </div>
       <div className="movie-list-actor">
-        <ActorMovies/>
+        <ActorMovies />
       </div>
     </ActorStyles>
-      
-    
-  )
-}
-export default Actor
+  );
+};
+export default Actor;

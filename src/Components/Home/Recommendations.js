@@ -10,7 +10,7 @@ import { postApiCall } from "../MicroServiceApiCalls/PostApiCall";
 import Spinner from "../Spinner/Spinner";
 import { key } from "../Utils/TMDBkey";
 import { RecommendationStyles } from "./RecommendationsStyles";
-
+import { recommendationEngine } from "../Utils/BackEndApis";
 
 const Recommendations = () => {
   const { recommendedMovies } = useContext(MovieContext);
@@ -60,7 +60,7 @@ const Recommendations = () => {
     let CancelToken = axios.CancelToken;
     let source = CancelToken.source();
     postApiCall(
-      "http://127.0.0.1:5000/recommend2",
+      `${recommendationEngine}/recommend2`,
       data,
       setRecommendationSearchError,
       setRecommendedMovies,

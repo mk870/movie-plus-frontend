@@ -8,7 +8,7 @@
 * Finally, it has a live [***Twitter Movie Sentiment***](https://github.com/mk870/Twitter_Sentiment_Analysis_Api) score for each movie, in addition you also get to see what people are saying about your movie through wordcloud.
 ### Project Steps :
 * The app has 9 pages created using react-router (homepage, myMovies, myActors, videos, , login, actor, movie, twitterSentiment and signup page)
-* This app consumes 3 custom made apis, a flask machine-learning twitter sentiment app, flask machine-learning recommendation app and a spring boot app with a mysql database.
+* This app consumes 3 custom made apis, a flask machine-learning twitter sentiment app, flask machine-learning recommendation app and a spring boot app with a postgreSQL database.
 * Finally, styled-components was used to style the entire application.
 
 ### **Resources Used**
@@ -58,10 +58,10 @@
 <img src="https://i.ibb.co/9Z50Mrg/Movie-Plus-videos.png" alt="Movie-Plus-videos" border="0">
 
 ### **MyMovies and MyActors**  
-* The client's movies and actors are created, deleted and saved via a restful [***Spring boot server***](https://github.com/mk870/MoviePlusServer) to a mysql database.
+* The client's movies and actors are created, deleted and saved via a restful [***Spring boot server***](https://github.com/mk870/MoviePlusServer) to a postgreSQL database.
 * The client can access, delete his/her movies and actors on  his/her account.
 
 ### **Productionization**
-Deployed the app to Netlify.
+Deployed the app to Vercel.
 
 **Live Implemantation:** [MoviePlus](https://react-movieplus.netlify.app)
