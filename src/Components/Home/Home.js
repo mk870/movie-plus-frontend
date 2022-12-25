@@ -33,7 +33,7 @@ const Home = () => {
       setRecommendLoader(true)
       let CancelToken = axios.CancelToken;
       let source = CancelToken.source();
-      postApiCall('https://movie-recommandation-api.herokuapp.com/recommend1',message,setRecommendationSearchError,setRecommendedMovies,setRecommendLoader,source)
+      postApiCall('http://127.0.0.1:5000/recommend1',message,setRecommendationSearchError,setRecommendedMovies,setRecommendLoader,source)
       setMovieSearch('')
     }
     
@@ -50,7 +50,7 @@ const Home = () => {
         letter: movieSearch
       }
       
-      postApiCall('http://movie-env.eba-y5uppbmw.us-east-1.elasticbeanstalk.com/movies',data,setSearchError,setSearchResults,setSuggestionLoader,source)
+      postApiCall('http://127.0.0.1:5000/movies',data,setSearchError,setSearchResults,setSuggestionLoader,source)
     }else {
       setSearchResults('')
       setSearchError('')

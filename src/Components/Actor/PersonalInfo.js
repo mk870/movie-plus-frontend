@@ -6,6 +6,7 @@ import { Button } from '../Button/Button'
 import { MovieContext } from '../Context/AppContext'
 import Popup from '../Popup/Popup'
 import { postJwtApiCall } from '../MicroServiceApiCalls/PostApiCall'
+import { useNavigate } from 'react-router-dom'
 
 const PersonalInfo = ({name,bio}) => {
   const [loader,setLoader] = useState(false)
@@ -13,6 +14,7 @@ const PersonalInfo = ({name,bio}) => {
   const [addActorError,setAddActorError] = useState(null)
   const {value} = useContext(MovieContext)
   const [popup,setPopup] = useState(false)
+  const navigate = useNavigate()
   const url = 'https://movieplus-server.herokuapp.com/api/account/saveactors'
   const genderCalculator =(num)=>{
     if(num === 1){
@@ -21,18 +23,23 @@ const PersonalInfo = ({name,bio}) => {
     else if(!num) return 'no data'
   }
   const addActor = actorBio=>{
-    let data = {
-      name: actorBio.name,
-      gender: genderCalculator(actorBio.gender),
-      birthday: actorBio.birthday,
-      birth_place: actorBio.place_of_birth,
-      age: ageCalulator(actorBio.birthday),
-      tmdb_id: actorBio.id
+    if(value){
+      let data = {
+        name: actorBio.name,
+        gender: genderCalculator(actorBio.gender),
+        birthday: actorBio.birthday,
+        birth_place: actorBio.place_of_birth,
+        age: ageCalulator(actorBio.birthday),
+        tmdb_id: actorBio.id
+      }
+      
+      setLoader(true)
+      postJwtApiCall(url,data,setAddActorError,setAddActorResults,setLoader,value)
+      setPopup(true)
+    }else{
+      navigate('/login')
     }
     
-    setLoader(true)
-    postJwtApiCall(url,data,setAddActorError,setAddActorResults,setLoader,value)
-    setPopup(true)
   }
   const ageCalulator = (dateString)=>{
     if(dateString){

@@ -35,15 +35,20 @@ const MovieInfo = () => {
     }
   },[])
   const addMovie =(movieData)=>{
-    let data = {
-      title: movieData.title,
-      release_date: movieData.release_date,
-      runtime: movieData.runtime,
-      tmdb_id: movieData.id
+    if(value){
+      let data = {
+        title: movieData.title,
+        release_date: movieData.release_date,
+        runtime: movieData.runtime,
+        tmdb_id: movieData.id
+      }
+      setLoader(true)
+      postJwtApiCall(url,data,setAddMovieError,setAddMovieResults,setLoader,value)
+      setPopup(true)
+    }else{
+      navigate('/login')
     }
-    setLoader(true)
-    postJwtApiCall(url,data,setAddMovieError,setAddMovieResults,setLoader,value)
-    setPopup(true)
+    
   }
   return (
     <MovieInfoStyles>
