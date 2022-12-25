@@ -64,4 +64,4 @@
 ### **Productionization**
 Deployed the app to Vercel.
 
-**Live Implemantation:** [MoviePlus](https://react-movieplus.netlify.app)
+**Live Implemantation:** [MoviePlus](https://movie-plus-frontend.vercel.app)
