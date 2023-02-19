@@ -1,21 +1,22 @@
-import Home from "./Components/Home/Home";
 import { BrowserRouter, Routes, Route, Navigate } from "react-router-dom";
-import ErrorPage from "./Components/ErrorPage/ErrorPage";
+
 import Navbar from "./Components/Navbar/Navbar";
 import Footer from "./Components/Footer/Footer";
 import { Globalstyles } from "./Components/GlobalStyles/GlobalStyles";
-import MyActors from "./Components/MyActors/MyActors";
-import MyMovies from "./Components/MyMovies/MyMovies";
-import Login from "./Components/Login/Login";
-import Signup from "./Components/Signup/Signup";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { MovieContext } from "./Components/Context/AppContext";
-import Movie from "./Components/Movie/Movie";
-import TwitterSentiment from "./Components/TwitterSentiment/TwitterSentiment";
-import Actor from "./Components/Actor/Actor";
-import WatchVideo from "./Components/Videos/WatchVideo";
-import SignupVerification from "./Components/Verification/SignupVerification";
 import { useLocaleStorage } from "./Components/Utils/useLocaleStorage";
+import Home from "./Pages/Home/Home";
+import MyActors from "./Pages/MyActors/MyActors";
+import MyMovies from "./Pages/MyMovies/MyMovies";
+import Signup from "./Pages/Signup/Signup";
+import Login from "./Pages/Login/Login";
+import SignupVerification from "./Pages/Verification/SignupVerification";
+import TwitterSentiment from "./Pages/TwitterSentiment/TwitterSentiment";
+import WatchVideo from "./Pages/Videos/WatchVideo";
+import ErrorPage from "./Pages/ErrorPage/ErrorPage";
+import Movie from "./Pages/Movie/Movie";
+import Actor from "./Pages/Actor/Actor";
 
 function App() {
   const [recentMovies, setRecentMovies] = useState("");
@@ -29,7 +30,9 @@ function App() {
     useState("");
   const [recommendLoader, setRecommendLoader] = useState(false);
   const [value, setValue] = useLocaleStorage(null, "moviejwt");
-
+  useEffect(()=>{
+    console.log("refreshed")
+  },[value])
   return (
     <MovieContext.Provider
       value={{
@@ -58,7 +61,6 @@ function App() {
       <BrowserRouter>
         <Globalstyles />
         <Navbar />
-
         <Routes>
           <Route path="/" element={<Home />} />
           <Route

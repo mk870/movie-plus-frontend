@@ -1,4 +1,6 @@
 import axios from "axios";
+import jwt_decode from "jwt-decode";
+import { ginGolangApi } from "../Utils/BackEndApis";
 
 export const getApiCall = (
   url,
@@ -78,13 +80,18 @@ export const getVerificationApiCall = (
   axios
     .get(url)
     .then((data) => {
-      setData(data.data.response);
-      setValue(data.data.jwt);
+      setData("verification successful");
+      setValue(data.data.accessToken);
       setError(null);
       setLoader(false);
     })
     .catch((e) => {
-      setError(e.message);
+      if (e.response?.data.error !== "") {
+        setError(e.response?.data.error);
+      }
+      if (JSON.stringify(e).message === "Network Error") {
+        setError("your internet connection is poor");
+      }
       setLoader(false);
     });
 };
@@ -94,17 +101,52 @@ export const getApiCallAuth = (
   setSearchResults,
   setSearchError,
   setLoader,
-  jwt
+  jwt,
+  setJwt
 ) => {
-  axios
-    .get(url, { headers: { Authorization: `Bearer ${jwt}` } })
+  const axiosApiInstance = axios.create();
+  axiosApiInstance.interceptors.request.use(
+    async (config) => {
+      const user = jwt_decode(jwt);
+      const exp = user.exp * 1000;
+      const expiryTime = new Date(exp).getTime();
+      const currentTime = new Date().getTime();
+      if (currentTime >= expiryTime) {
+        const value = await axios.get(`${ginGolangApi}/refresh-token`, {
+          headers: {
+            token: jwt,
+          },
+        });
+        setJwt(value.data.accessToken);
+        config.headers = {
+          Authorization: `Bearer ${value.data.accessToken}`,
+        };
+        return config;
+      } else {
+        config.headers = {
+          Authorization: `Bearer ${jwt}`,
+        };
+        return config;
+      }
+    },
+    (error) => {
+      Promise.reject(error);
+    }
+  );
+  axiosApiInstance
+    .get(url)
     .then((data) => {
       setSearchResults(data.data);
       setSearchError("");
       setLoader(false);
     })
     .catch((e) => {
-      setSearchError(e.message);
+      if (e.response?.data.error !== "") {
+        setSearchError(e.response?.data.error);
+      }
+      if (JSON.stringify(e).message === "Network Error") {
+        setSearchError("your internet connection is poor");
+      }
       setLoader(false);
     });
 };

@@ -28,13 +28,13 @@ export const DropdownStyles = styled.div`
     justify-content:center;
     align-items:center;
     padding:10px;
+    width:100%;
     .page-drop{
       display:flex;
       flex-direction:row;
-      justify-content:center;
+      justify-content:start;
       align-items:center;
-      width: 100%;
-      width:100%;
+      width: 95%;
       height:40px;
       border-bottom:1px solid grey;
       padding:1px;

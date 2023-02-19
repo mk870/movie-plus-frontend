@@ -2,34 +2,10 @@ import axios from "axios";
 import jwt_decode from "jwt-decode";
 import { ginGolangApi } from "../Utils/BackEndApis";
 
-export const postApiCall = (
+export const logoutApiCall = (
   url,
-  data,
-  setSearchError,
   setSearchResults,
-  setLoader,
-  source
-) => {
-  axios
-    .post(url, data, { cancelToken: source.token })
-    .then((data) => {
-      setSearchResults(data.data);
-      setSearchError("");
-      setLoader(false);
-    })
-    .catch((e) => {
-      if (e.message !== "canceled") {
-        setSearchError(e.message);
-        setLoader(false);
-      }
-    });
-};
-
-export const postJwtApiCall = (
-  url,
-  data,
   setSearchError,
-  setSearchResults,
   setLoader,
   jwt,
   setJwt
@@ -64,15 +40,16 @@ export const postJwtApiCall = (
     }
   );
   axiosApiInstance
-    .post(url, data)
+    .get(url)
     .then((data) => {
       setSearchResults(data.data);
       setSearchError("");
       setLoader(false);
+      setJwt(null);
     })
     .catch((e) => {
-      if (e.response?.data?.error !== "") {
-        setSearchError(e.response?.data?.error);
+      if (e.response?.data.error !== "") {
+        setSearchError(e.response?.data.error);
       }
       if (JSON.stringify(e).message === "Network Error") {
         setSearchError("your internet connection is poor");
